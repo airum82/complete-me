@@ -2,7 +2,7 @@ import Trie from '../lib/Trie.js';
 import { assert } from 'chai';
 
 
-describe('test', () => {
+describe.only('Trie', () => {
   let trie;
   beforeEach(() => {
     trie = new Trie();
@@ -11,32 +11,38 @@ describe('test', () => {
     assert.isFunction(trie.insert)
   })
   it('should have a count method', () => {
-    assert.isFunction(trie.count)
+    assert.isFunction(trie.counter)
   })
-  it('should start off with a count of 1 for the root node', () => {
-    assert.deepEqual(trie.count(), 1);
+  it('should start off with a count of 0', () => {
+    assert.deepEqual(trie.counter(), 0);
   })
-  it.only('should take one argument and create a new node for each letter. Each letter should be a child of the previous letter', () => {
+  it('should take one argument and create a new node for each letter. Each letter should be a child of the previous letter', () => {
     trie.insert('pizza');
-    trie.insert('apple');
+    trie.insert('pizzeria');
     console.log(JSON.stringify(trie, null, 4));
     assert.deepEqual(trie.root.children.p.children.i.data, 'i');
     // assert.deepEqual(trie.count(), 2);
   })
+  it('duplicate words should not increase the word count', () => {
+    trie.insert('tree');
+    trie.insert('car');
+    trie.insert('car');
+    assert.deepEqual(trie.counter(), 2);
+  })
   it('trie.root should contain new node as child', () => {
-    assert.deepEqual(trie.root, { data: null, parent: null, children: {} });
     trie.insert('pizza');
-    assert.deepEqual(trie.count(), 1);
-    assert.deepEqual(trie.root.p.data, 'p');
+    assert.deepEqual(trie.counter(), 1);
+    assert.deepEqual(trie.root.children.p.data, 'p');
   })
   describe('trie.suggest', () => {
     it('should have an suggest method', () => {
     assert.isFunction(trie.suggest)
   })
-  it.only('should suggest possible words based on letter(s) entered', () => {
+  it('should suggest possible words based on letter(s) entered', () => {
     trie.insert('pizza');
+    trie.insert('pizzeria');
     console.log(JSON.stringify(trie.root.children));
-    assert.deepEqual(trie.suggest('piz'), ['pizza']);
+    assert.deepEqual(trie.suggest('piz'), ['pizza', 'pizzeria']);
   })
   })
 });
