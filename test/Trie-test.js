@@ -16,10 +16,10 @@ describe('test', () => {
   it('should start off with a count of 1 for the root node', () => {
     assert.deepEqual(trie.count(), 1);
   })
-  it('should take one argument and create a new node for each letter. Each letter should be a child of the previous letter', () => {
+  it.only('should take one argument and create a new node for each letter. Each letter should be a child of the previous letter', () => {
     trie.insert('pizza');
     trie.insert('apple');
-    console.log(JSON.stringify(trie.root.children));
+    console.log(JSON.stringify(trie, null, 4));
     assert.deepEqual(trie.root.children.p.children.i.data, 'i');
     // assert.deepEqual(trie.count(), 2);
   })
@@ -28,17 +28,6 @@ describe('test', () => {
     trie.insert('pizza');
     assert.deepEqual(trie.count(), 1);
     assert.deepEqual(trie.root.p.data, 'p');
-  })
-  it('should increment the count upon each insertion', () => {
-    trie.insert('word');
-    trie.insert('would');
-    assert.deepEqual(trie.root.children.data, ['w']);
-    // assert.deepEqual(trie.root.children, ['w']);
-  })
-  it('should insert new node with prefix matching data as child of prefix node', () => {
-    trie.insert('piz');
-    trie.insert('pizza');
-    assert.deepEqual(trie.insertions[0].children[0].data, 'pizza');
   })
   describe('trie.suggest', () => {
     it('should have an suggest method', () => {
