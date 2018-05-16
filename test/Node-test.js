@@ -1,7 +1,7 @@
 import Node from '../lib/Node.js';
 import { assert } from 'chai';
 
-describe.only('Node', () => {
+describe('Node', () => {
   let node;
   beforeEach(() => {
     node = new Node('a');

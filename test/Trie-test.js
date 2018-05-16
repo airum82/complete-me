@@ -16,12 +16,13 @@ describe('test', () => {
   it('should start off with a count of 1 for the root node', () => {
     assert.deepEqual(trie.count(), 1);
   })
-  it('should take one argument and create a new node for each letter the first time', () => {
+  it.only('should take one argument and create a new node for each letter. Each letter should be a child of the previous letter', () => {
     trie.insert('pizza');
-    assert.deepEqual(trie.count(), 6);
+    assert.deepEqual(trie.root.children.p.children.i.data, 'i');
+    // assert.deepEqual(trie.count(), 2);
   })
   it('trie.root should contain new node as child', () => {
-    assert.deepEqual(trie.root, Node { data: null, parent: null, children: {} });
+    assert.deepEqual(trie.root, { data: null, parent: null, children: {} });
     trie.insert('pizza');
     assert.deepEqual(trie.count(), 6);
     assert.deepEqual(trie.root.p, 'p');
@@ -37,13 +38,13 @@ describe('test', () => {
     trie.insert('pizza');
     assert.deepEqual(trie.insertions[0].children[0].data, 'pizza');
   })
-  it('should have an suggest method', () => {
+  describe('trie.suggest', () => {
+    it('should have an suggest method', () => {
     assert.isFunction(trie.suggest)
   })
-  it.skip('should suggest possible words based on letter(s) entered', () => {
+  it('should suggest possible words based on letter(s) entered', () => {
     trie.insert('pizza');
-    trie.insert('pizzeria');
-    trie.insert('apple');
-    assert.equal(trie.suggest('piz'), ['pizza', 'pizzeria'])
+    assert.equal(trie.suggest('piz'), 'pizza');
+  })
   })
 });
