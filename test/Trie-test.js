@@ -21,7 +21,6 @@ describe('Trie', () => {
     trie.insert('pizzeria');
     console.log(JSON.stringify(trie, null, 4));
     assert.deepEqual(trie.root.children.p.children.i.data, 'i');
-    // assert.deepEqual(trie.count(), 2);
   })
   it('duplicate words should not increase the word count', () => {
     trie.insert('tree');

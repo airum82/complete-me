@@ -21,7 +21,23 @@ describe.only('Trie', () => {
   })
   it('suggest method should work with new dictionary words', () => {
     trie.populate(dictionary);
-    assert.equal(trie.suggest('apple'), []);
+    assert.deepEqual(trie.suggest('apple'), [
+        "apple",
+        "appleberry",
+        "appleblossom",
+        "applecart",
+        "appledrane",
+        "applegrower",
+        "applejack",
+        "applejohn",
+        "applemonger",
+        "applenut",
+        "appleringy",
+        "appleroot",
+        "applesauce",
+        "applewife",
+        "applewoman"
+      ]);
   })
 });
   
