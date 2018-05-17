@@ -2,7 +2,7 @@ import Trie from '../lib/Trie.js';
 import { assert } from 'chai';
 
 
-describe.only('Trie', () => {
+describe('Trie', () => {
   let trie;
   beforeEach(() => {
     trie = new Trie();
