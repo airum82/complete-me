@@ -9,9 +9,6 @@ describe('Node', () => {
   it('should have a data property', () => {
     assert.equal(node.data, 'a');
   })
-  it('should have a parent property', () => {
-    assert.equal(node.parent, null);
-  })
   it('should have a children property', () => {
     assert.deepEqual(node.children, {});
   })
